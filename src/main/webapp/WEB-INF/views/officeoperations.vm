@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png"alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a href="/officeoperations" class="current">Office operations</a>
+        <a href="/operations">Transformations</a>
+        <a href="/stock">Stock</a>
+        <div class="dropdown">
+            <a>Admin</a>
+            <div class="dropdown-content">
+                <a href="/users">Users</a>
+                <a href="/accounts">Accounts</a>
+                <a href="/offices">Offices</a>
+            </div>
+    </nav>
+</div>
+<main>
+    <div class="content">
+            #foreach($account in $status)
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>Bank</th>
+                    <th>acc.type</th>
+                    <th>acc.Nr</th>
+                    <th>ballance</th>
+                    <th>office</th>
+                </tr>
+            <tr>
+                <td>$account.accountId</td>
+                <td>$account.bank</td>
+                <td>$account.accType</td>
+                <td>$account.accNr</td>
+                <td>$account.ballance</td>
+                <td>$account.officeID</td>
+            </tr>
+            </table>
+              <table>
+                <tr>
+                    <th>id</th>
+                    <th>Date</th>
+                    <th>Agent</th>
+                    <th>Description</th>
+                    <th>D/C</th>
+                    <th>EUR</th>
+
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                  #foreach($operation in $operations)
+                    <tr>
+                        <td>$operation.id</td>
+                        <td>$operation.date</td>
+                        <td>$operation.agent</td>
+                        <td>$operation.opDescription</td>
+                        <td>$operation.type</td>
+                        <td>$operation.opResultEUR</td>
+
+                        <td><button class="edit" a href="edituser/$user.id"  target="_blank">Edit</button></td>
+                        <td><button class="delete">Delete</button></td>
+                    </tr>
+                  #end
+                </table>
+                <table>
+                    <tr>
+                        <th>Total Debit: 10500 EUR</th>
+                        <th>Total Credit: 5000 EUR</th>
+                    </tr>
+                </table>
+                <table>
+                    <tr><th>Saldo: +5500 EUR</th></tr>
+                </table>
+                <br>
+            #end
+    </div>
+
+    <aside>
+        <form  class="date" action="#">
+            <p>
+                <span>From</span><input id="date" type="date">
+            </p>
+            <p>
+                <span>To</span><input id="date" type="date">
+            </p>
+            <button class="asideButton">Filter</button>
+        </form>
+        <form action="#">
+            <label for="office">Office</label>
+            <select name="office" id="office">
+                <option value="office1">Office 1</option>
+                <option value="office2">Office 2</option>
+                <option value="office3">Office 3</option>
+                <option value="office4">Office 4</option>
+                <option value="office5">Office 5</option>
+            </select>
+        </form>
+        <form action="#">
+            <label for="type">Type</label>
+            <select name="type" id="type">
+                <option value="type1">Bank</option>
+                <option value="type2">Cash</option>
+            </select>
+        </form>
+        <form action="#">
+            <label for="type2">Debit/Credit</label>
+            <select name="type2" id="type2">
+                <option value="type1">Debit</option>
+                <option value="type2">Credit</option>
+            </select>
+        </form>
+
+
+    </aside>
+</main>
+
+<script src='js/script.js'></script>
+
+</body>
+</html>

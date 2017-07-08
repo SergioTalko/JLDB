@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+        #include("/WEB-INF/images/home.png")
+</style>
+<header>
+    <img class="logo" src="/WEB-INF/images/logo_300-150.png" alt="Logo" width="300" height="150"/>
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a href="/accountstatus">Account Status</a>
+        <a href="/operations">Operations</a>
+        <a href="/stock">Stock</a>
+        <div class="dropdown">
+            <a class="current">Admin</a>
+            <div class="dropdown-content">
+                <a href="/users">Users</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+    </nav>
+</div>
+<main>
+    <div class="content">
+
+        <table>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>surname</th>
+                <th>tel</th>
+                <th>email</th>
+                <th>password</th>
+                <th>userType</th>
+                <th>office</th>
+
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            #foreach($user in $userslist)
+                <tr>
+                    <td>$user.id</td>
+                    <td>$user.name</td>
+                    <td>$user.surname</td>
+                    <td>$user.tel</td>
+                    <td>$user.email</td>
+                    <td>$user.password</td>
+                    <td>$user.userType</td>
+                    <td>$user.officeID</td>
+
+                    <td><button class="edit" a href="edituser/$user.id"  target="_blank">Edit</button></td>
+                    <td><button class="delete">Delete</button></td>
+                </tr>
+            #end
+        </table>
+    </div>
+
+    <aside>
+        <form action="#">
+            <button class="asideButton">Add new User</button>
+        </form>
+        <form action="#">
+            <label for="office">Office</label>
+            <select name="office" id="office">
+                <option value="office1">Office 1</option>
+                <option value="office2">Office 2</option>
+                <option value="office3">Office 3</option>
+                <option value="office4">Office 4</option>
+                <option value="office5">Office 5</option>
+            </select>
+        </form>
+        <form action="#">
+            <label for="position">Position</label>
+            <select name="position" id="position">
+                <option value="position">Position 1</option>
+                <option value="position">Position 2</option>
+                <option value="position">Position 3</option>
+            </select>
+        </form>
+
+    </aside>
+</main>
+
+<script src='js/script.js'></script>
+<script>
+    //javascript code
+    $('#loginForm').submit(function() {
+        $.ajax({
+            type: "POST",
+            url: "/login_db",
+            data: ({
+                login: $('#login').val(),
+                password: $('#password').val()
+            }),
+            //dataType: "json",
+            success: function (data) {
+                window.location.href = "http://localhost:8080/allUsers"
+                //document.getElementById("result").value = "OK!"
+                //alert("success");
+            },
+            error: function (xhr) {
+                $('result').value = "Wrong Login or password!";
+                //window.location.reload(true);
+                alert("error!!!");
+            }
+        });
+    })
+
+</script>
+</body>
+</html>

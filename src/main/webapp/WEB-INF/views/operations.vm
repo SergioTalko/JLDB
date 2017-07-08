@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png"alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a href="/officeoperations">Office operations</a>
+        <a href="/operations" class="current">Transformations</a>
+        <a href="/stock">Stock</a>
+        <div class="dropdown">
+            <a>Admin</a>
+            <div class="dropdown-content">
+                <a href="/users">Users</a>
+                <a href="/accounts">Accounts</a>
+                <a href="/offices">Offices</a>
+            </div>
+    </nav>
+</div>
+<main>
+    <div class="content">
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>Date</th>
+                    <th>Labs</th>
+                    <th>Description</th>
+                    <th>input kgs</th>
+                    <th>input %CBD</th>
+                    <th>input %THC</th>
+                    <th>output kgs</th>
+                    <th>output %CBD</th>
+                    <th>output %THC</th>
+                    <th>coef CBD</th>
+                    <th>coef THC</th>
+
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                #foreach($operation in $operations)
+                    <tr>
+                        <td>$operation.id</td>
+                        <td>$operation.date</td>
+                        <td>$operation.agent</td>
+                        <td>$operation.opDescription</td>
+                        <td>$operation.type</td>
+                        <td>$operation.opResultEUR</td>
+
+                        <td><button class="edit" a href="edituser/$user.id"  target="_blank">Edit</button></td>
+                        <td><button class="delete">Delete</button></td>
+                    </tr>
+                #end
+            </table>
+            <br>
+    </div>
+
+    <aside>
+        <form action="#">
+            <button class="asideButton" onclick="window.showModalDialog('newoperation')">Add new Transformation</button>
+        </form>
+        <form  class="date" action="#">
+            <p>
+                <span>From</span><input id="date" type="date">
+            </p>
+            <p>
+                <span>To</span><input id="date" type="date">
+            </p>
+            <button class="asideButton">Filter</button>
+        </form>
+        <form action="#">
+            <label for="office">Office</label>
+            <select name="office" id="office">
+                <option value="office1">Office 1</option>
+                <option value="office2">Office 2</option>
+                <option value="office3">Office 3</option>
+                <option value="office4">Office 4</option>
+                <option value="office5">Office 5</option>
+            </select>
+        </form>
+    </aside>
+</main>
+
+<script src='js/script.js'></script>
+
+</body>
+</html>

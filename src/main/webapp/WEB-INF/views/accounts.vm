@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png"alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a href="/officeoperations" class="current">Office operations</a>
+        <a href="/operations">Transformations</a>
+        <a href="/stock">Stock</a>
+        <div class="dropdown">
+            <a>Admin</a>
+            <div class="dropdown-content">
+                <a href="/users">Users</a>
+                <a href="/accounts">Accounts</a>
+                <a href="/offices">Offices</a>
+            </div>
+    </nav>
+</div>
+<main>
+    <div class="content">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Bank</th>
+                <th>acc.type</th>
+                <th>acc.Nr</th>
+                <th>ballance</th>
+                <th>office</th>
+
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            #foreach($account in $accountslist)
+            <tr>
+                <td>$account.accountId</td>
+                <td>$account.bank</td>
+                <td>$account.accType</td>
+                <td>$account.accNr</td>
+                <td>$account.ballance</td>
+                <td>$account.officeID</td>
+
+                <td><button class="edit" a href="editaccount/$account.accountId"  target="_blank">Edit</button></td>
+                <td><button class="delete">Delete</button></td>
+            </tr>
+                #end
+        </table>
+    </div>
+
+    <aside>
+        <form action="#">
+            <button class="asideButton" onclick="window.showModalDialog('newaccount')">Add new Account</button>
+        </form>
+        <form action="#">
+            <label for="office">Office</label>
+            <select name="office" id="office">
+                <option value="office1">Office 1</option>
+                <option value="office2">Office 2</option>
+                <option value="office3">Office 3</option>
+                <option value="office4">Office 4</option>
+                <option value="office5">Office 5</option>
+            </select>
+        </form>
+        <form action="#">
+            <label for="position">Account type</label>
+            <select name="type" id="type">
+                <option value="type">Bank</option>
+                <option value="type">Cash</option>
+            </select>
+        </form>
+
+    </aside>
+</main>
+
+<script src='js/script.js'></script>
+
+</body>
+</html>

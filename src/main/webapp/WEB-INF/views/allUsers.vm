@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<head>
+    <style>#include("/WEB-INF/css/style.css");</style>
+
+    <title>AllUsers page</title>
+</head>
+
+<body>
+
+<div>List of users here
+    #set($count = 0)
+    <table border="1%">
+        <tr>
+            <th>#</th>
+            <th>id</th>
+            <th>name</th>
+            <th>password</th>
+            <th>e-mail</th>
+        </tr>
+        #foreach($user in $list)
+            <tr>
+                <td>#set($count=$count+1) $count</td>
+                <td>$user.id</td>
+                <td>$user.name</td>
+                <td>$user.password</td>
+                <td>$user.email</td>
+            </tr>
+        #end
+    </table>
+</div>
+</body>
+</html>

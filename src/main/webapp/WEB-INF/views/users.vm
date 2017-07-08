@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png"alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a href="/officeoperations" class="current">Office operations</a>
+        <a href="/operations">Transformations</a>
+        <a href="/stock">Stock</a>
+        <div class="dropdown">
+            <a>Admin</a>
+            <div class="dropdown-content">
+                <a href="/users">Users</a>
+                <a href="/accounts">Accounts</a>
+                <a href="/offices">Offices</a>
+            </div>
+    </nav>
+</div>
+<main>
+    <div class="content">
+
+        <table>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>surname</th>
+                <th>tel</th>
+                <th>email</th>
+                <th>password</th>
+                <th>userType</th>
+                <th>office</th>
+
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            #foreach($user in $userslist)
+            <tr>
+                <td>$user.id</td>
+                <td>$user.name</td>
+                <td>$user.surname</td>
+                <td>$user.tel</td>
+                <td>$user.email</td>
+                <td>$user.password</td>
+                <td>$user.userType</td>
+                <td>$user.officeID</td>
+
+                <td><button class="edit" a href="edituser/$user.id"  target="_blank">Edit</button></td>
+                <td><button class="delete">Delete</button></td>
+            </tr>
+                #end
+        </table>
+    </div>
+
+    <aside>
+        <form action="#">
+            <button class="asideButton" onclick="window.showModalDialog('users')">Add new User</button>
+        </form>
+        <form action="#">
+            <label for="office">Office</label>
+            <select name="office" id="office">
+                <option value="*">All</option>
+                #foreach($office in $officeslist)
+                    <option value="$office.officeID">$office.name</option>
+                #end
+            </select>
+        </form>
+        <form action="#">
+            <label for="position">Position</label>
+            <select name="position" id="position">
+                <option value="*">All</option>
+                #foreach($position in $positionslist)
+                    <option value="$position">$position</option>
+                #end
+            </select>
+        </form>
+
+    </aside>
+</main>
+
+<script src='js/script.js'></script>
+
+</body>
+</html>
