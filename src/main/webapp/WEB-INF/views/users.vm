@@ -16,11 +16,11 @@
 </header>
 <div class="nav-wrapper">
     <nav>
-        <a href="/officeoperations" class="current">Office operations</a>
+        <a href="/officeoperations" >Office operations</a>
         <a href="/operations">Transformations</a>
         <a href="/stock">Stock</a>
         <div class="dropdown">
-            <a>Admin</a>
+            <a class="current">Admin -> Users</a>
             <div class="dropdown-content">
                 <a href="/users">Users</a>
                 <a href="/accounts">Accounts</a>
@@ -56,8 +56,8 @@
                 <td>$user.userType</td>
                 <td>$user.officeID</td>
 
-                <td><button class="edit" a href="edituser/$user.id"  target="_blank">Edit</button></td>
-                <td><button class="delete">Delete</button></td>
+                <td><button class="edit" onclick="edituser_db($user.id)">Edit</button></td>
+                <td><button class="delete" value="$user.id" onclick="removeuser($user.id)">Delete</button></td>
             </tr>
                 #end
         </table>
@@ -65,7 +65,7 @@
 
     <aside>
         <form action="#">
-            <button class="asideButton" onclick="window.showModalDialog('users')">Add new User</button>
+            <button class="asideButton" onclick="window.showModalDialog('newuser')">Add new User</button>
         </form>
         <form action="#">
             <label for="office">Office</label>
@@ -90,6 +90,42 @@
 </main>
 
 <script src='js/script.js'></script>
+<script>
+    function removeuser(id) {
+        //var userid = parameters.userid;
+        $.ajax({
+            url: "/removeuser_db",
+            data: ({
+                id: id//$(this).attr("value")
+            }),
+            //dataType: "json",
+            success: function (data) {
+                alert("User Deleted");
+                window.location.reload (true);
+            },
+            error: function (xhr) {
+                alert("error!!!");
+            }
+        });
+    }
+
+    function edituser_db(id) {
+        $.ajax({
+            url: "/edituser_db",
+            data: ({
+                id: id
+            }),
+            success: function (data) {
+                alert("Good");
+                window.showModalDialog('url');
+            },
+            error: function (xhr) {
+                alert("error!!!");
+            }
+
+        });
+    }
+</script>
 
 </body>
 </html>

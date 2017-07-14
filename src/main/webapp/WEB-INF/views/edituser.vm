@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta CHARSET="UTF-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png" alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a>Create new user</a>
+    </nav>
+</div>
+<main>
+    <!--div class="content"-->
+    <form name="newuser" id="newuser" accept-charset="UTF-8">
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="$user.name" placeholder="Name...">
+        <br/>
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" value="$user.surname" placeholder="Surname...">
+        <br/>
+        <label for="tel">Telephone number</label>
+        <input type="text" id="tel" name="tel" value="$user.tel" placeholder="Telephone number...">
+        <br/>
+        <label for="email">E-mail</label>
+        <input type="text" id="email" name="email" value="$user.email" placeholder="e-mail...">
+        <br/>
+        <label for="password">Password</label>
+        <input type="text" id="password" name="password" value="$user.password" placeholder="Password...">
+        <br/>
+        <label for="usertype">User type</label>
+        <select name="usertype" id="usertype">
+            #foreach($usertype in $positionslist)
+                <option value="$usertype">$usertype</option>
+            #end
+        </select>
+
+        <label for="office">Office</label>
+        <select name="office" id="office">
+            #foreach($office in $officeslist)
+                <option value="$office.officeID" selected="selected" >$office.name</option>
+            #end
+        </select>
+    </form>
+    <br/>
+    <!--/div-->
+    <button type="submit" class="asideButton" onclick="modifyuser()">Submit</button>
+    <button class="asideButton1" onclick="window.location.reload(true)">Clear form</button>
+    <button class="asideButton2" onclick="window.close()">Cancel</button>
+</main>
+
+<script>
+    function modifyuser() {
+        $.ajax({
+            url: "/edituser_db",
+            data: ({
+                name: $('#name').val(),
+                surname: $('#surname').val(),
+                tel: $('#tel').val(),
+                email: $('#email').val(),
+                password: $('#password').val(),
+                usertype: $('#usertype').val(),
+                office: $('#office').val()
+            }),
+            //dataType: "json",
+            success: function (data) {
+                alert("User Modified");
+                opener.location.reload (true);
+                window.close();
+            },
+            error: function (xhr) {
+                alert("error!!!");
+            }
+        });
+    }
+    var uT = $user.userType;
+    var ut = document.getElementById("usertype");
+    for (var i, j=0; i = ut.options[j];j++){
+        ut.selectedIndex = j;
+        break;
+    }
+</script>
+
+</body>
+</html>

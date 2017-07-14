@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta CHARSET="UTF-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png" alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a>Create new account</a>
+    </nav>
+</div>
+<main>
+    <!--div class="content"-->
+    <form name="newaccount" id="newaccount" accept-charset="UTF-8">
+
+        <select name="acctype" id="acctype">
+            <option value="BANK">Bank</option>
+            <option value="CASH">Cash</option>
+        </select>
+
+        <label for="name">Bank name</label>
+        <input type="text" id="name" name="name" placeholder="Bank name...">
+        <br/>
+        <label for="address">address</label>
+        <input type="text" id="address" name="address" placeholder="Address...">
+        <br/>
+        <label for="accnr">Account number</label>
+        <input type="text" id="accnr" name="accnr" placeholder="Account number...">
+        <br/>
+        <label for="swift">SWIFT</label>
+        <input type="text" id="swift" name="swift" placeholder="SWIFT...">
+        <br/>
+        <label for="iban">IBAN</label>
+        <input type="text" id="iban" name="iban" placeholder="IBAN...">
+        <br/>
+        <label for="tel">Telephone number</label>
+        <input type="text" id="tel" name="tel" placeholder="Telephone number...">
+        <br/>
+        <label for="ballance">Current ballance</label>
+        <input type="text" id="ballance" name="ballance" placeholder="Current ballance...">
+        <br/>
+        <label for="office">Office</label>
+        <select name="office" id="office">
+            #foreach($office in $officeslist)
+                <option value="$office.officeID">$office.name</option>
+            #end
+        </select>
+
+    </form>
+    <br/>
+    <!--/div-->
+    <button type="submit" class="asideButton" onclick="addaccount()">Add new Account</button>
+    <button class="asideButton1" onclick="window.location.reload(true)">Clear form</button>
+    <button class="asideButton2" onclick="window.close()">Cancel</button>
+</main>
+
+<script>
+    function addaccount() {
+        $.ajax({
+            url: "/addaccount_db",
+            data: ({
+                acctype: $('#acctype').val(),
+                name: $('#name').val(),
+                address: $('#address').val(),
+                accnr: $('#accnr').val(),
+                swift: $('#swift').val(),
+                iban: $('#iban').val(),
+                tel: $('#tel').val(),
+                ballance: $('#ballance').val(),
+                office: $('#office').val()
+            }),
+            //dataType: "json",
+            success: function (data) {
+                alert("Account Added");
+                opener.location.reload (true);
+                window.close();
+            },
+            error: function (xhr) {
+                alert("error!!!");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

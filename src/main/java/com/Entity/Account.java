@@ -4,9 +4,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
-/**
- * Created by Dracula on 22.05.2017.
- */
 @Entity
 @Transactional
 @Table(name = "ACCOUNTS")

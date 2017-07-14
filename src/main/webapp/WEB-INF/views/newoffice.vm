@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta CHARSET="UTF-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png" alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a>Create new office</a>
+    </nav>
+</div>
+<main>
+    <!--div class="content"-->
+    <form name="newoffice" id="newoffice" accept-charset="UTF-8">
+
+        <label for="name">Office Name</label>
+        <input type="text" id="name" name="name" placeholder="Name...">
+        <br/>
+        <label for="address">address</label>
+        <input type="text" id="address" name="address" placeholder="Address...">
+        <br/>
+        <label for="tel">Telephone number</label>
+        <input type="text" id="tel" name="tel" placeholder="Telephone number...">
+
+    </form>
+    <br/>
+    <!--/div-->
+    <button type="submit" class="asideButton" onclick="addoffice()">Add new Office</button>
+    <button class="asideButton1" onclick="window.location.reload(true)">Clear form</button>
+    <button class="asideButton2" onclick="window.close()">Cancel</button>
+</main>
+
+<script>
+    function addoffice() {
+        $.ajax({
+            url: "/addoffice_db",
+            data: ({
+                name: $('#name').val(),
+                address: $('#address').val(),
+                tel: $('#tel').val()
+            }),
+            //dataType: "json",
+            success: function (data) {
+                alert("Office Added");
+                opener.location.reload (true);
+                window.close();
+            },
+            error: function (xhr) {
+                alert("error!!!");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

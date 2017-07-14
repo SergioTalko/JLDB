@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta CHARSET="UTF-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png" alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a>Create new user</a>
+    </nav>
+</div>
+<main>
+    <!--div class="content"-->
+        <form name="newuser" id="newuser" accept-charset="UTF-8">
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name...">
+            <br/>
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" placeholder="Surname...">
+            <br/>
+            <label for="tel">Telephone number</label>
+            <input type="text" id="tel" name="tel" placeholder="Telephone number...">
+            <br/>
+            <label for="email">E-mail</label>
+            <input type="text" id="email" name="email" placeholder="e-mail...">
+            <br/>
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" placeholder="Password...">
+            <br/>
+            <label for="usertype">User type</label>
+            <select name="usertype" id="usertype">
+                #foreach($usertype in $positionslist)
+                    <option value="$usertype">$usertype</option>
+                #end
+            </select>
+
+            <label for="office">Office</label>
+            <select name="office" id="office">
+                #foreach($office in $officeslist)
+                    <option value="$office.officeID">$office.name</option>
+                #end
+            </select>
+        </form>
+        <br/>
+    <!--/div-->
+            <button type="submit" class="asideButton" onclick="adduser()">Add new User</button>
+            <button class="asideButton1" onclick="window.location.reload(true)">Clear form</button>
+            <button class="asideButton2" onclick="window.close()">Cancel</button>
+</main>
+
+<script>
+    function adduser() {
+        $.ajax({
+            url: "/adduser_db",
+            data: ({
+                name: $('#name').val(),
+                surname: $('#surname').val(),
+                tel: $('#tel').val(),
+                email: $('#email').val(),
+                password: $('#password').val(),
+                usertype: $('#usertype').val(),
+                office: $('#office').val()
+            }),
+            //dataType: "json",
+            success: function (data) {
+                alert("User Added");
+                opener.location.reload (true);
+                window.close();
+            },
+            error: function (xhr) {
+                alert("error!!!");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

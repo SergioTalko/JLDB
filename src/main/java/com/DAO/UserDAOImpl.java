@@ -28,8 +28,13 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void removeUser(User user) {
-        entityManager.remove(user);
+    public void removeUser(Long userId) {
+        Session session = getSession();
+        User user = session.load(User.class, new Long(userId));
+        if(user!=null){
+            session.delete(user);
+        }
+        //entityManager.remove(user);
     }
 
     public void updateUser(User user){

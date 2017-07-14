@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface UserDAO{
     void addUser(User user);
-    void removeUser(User user);
+    void removeUser(Long userId);
     void updateUser(User user);
     //User getUser(String name, String surname); //Maybe unnecessary
     User getUser(Long userId);

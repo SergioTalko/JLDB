@@ -228,6 +228,26 @@ button.asideButton{
 	border-radius: 4px;
 	cursor: pointer;
 }
+button.asideButton1{
+	background: #adaf2d;
+	color: #fff;
+	padding: 5px 15px;
+	font-family: 'Segoe UI', sans-serif;
+	font-size: 0.85rem;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+button.asideButton2{
+	background: #af2a29;
+	color: #fff;
+	padding: 5px 15px;
+	font-family: 'Segoe UI', sans-serif;
+	font-size: 0.85rem;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
 @media (max-width: 1450px){
 	main{
 		margin: 30px 1em 0 1em;
