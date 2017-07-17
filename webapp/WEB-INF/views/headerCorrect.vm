@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accounting system</title>
+</head>
+<body>
+<style>
+        #include("/WEB-INF/css/style.css");
+</style>
+<header>
+    <img class="logo" src="logo_300-150.png"alt="Logo">
+    <div class="company-name">Company Accounting System</div>
+</header>
+<div class="nav-wrapper">
+    <nav>
+        <a href="/officeoperations" class="current">Office operations</a>
+        <a href="/operations">Operations</a>
+        <a href="/stock">Stock</a>
+        <div class="dropdown">
+            <a>Admin</a>
+            <div class="dropdown-content">
+                <a href="/users">Users</a>
+                <a href="/accounts">Accounts</a>
+                <a href="/offices">Offices</a>
+            </div>
+    </nav>
+</div>
+<main>
+</main>
+
+<script src='js/script.js'></script>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 package com.DAO;
 
 import com.Entity.Product;
-import com.Entity.GoodsType;
+import com.Entity.ProductType;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -61,7 +61,7 @@ public class ProductDAOImpl implements ProductDAO{
     }
 
     @Override
-    public List<Product> getByType(GoodsType type) {
+    public List<Product> getByType(ProductType type) {
         Session session = getSession();
         Query query = session.createQuery("from Product where goodsType = :goodsType");
         query.setParameter("goodsType", type);

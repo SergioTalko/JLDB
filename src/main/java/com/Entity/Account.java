@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Transactional
 @Table(name = "ACCOUNTS")
 public class Account {
-    Long accountId;
+    Long id;
     AccType accType;
     String bank;
     String adress;
@@ -39,7 +39,7 @@ public class Account {
     @SequenceGenerator(name = "ACCOUNTID_SEQ", sequenceName = "ACCOUNTID_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNTID_SEQ")
     public Long getAccountId() {
-        return accountId;
+        return id;
     }
     @Column(name = "ACCOUNTTYPE")
     public AccType getAccType() {
@@ -81,7 +81,7 @@ public class Account {
     //Setters //TODO CHECK Think they are unnecessary as we manipulate data in DB, not raw objects in memory.
 
     public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+        this.id = accountId;
     }
 
     public void setAccType(AccType accType) {

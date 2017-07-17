@@ -3,52 +3,48 @@ package com.Entity;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Transactional
 @Table(name = "USERS")
 public class User {
     private Long id;
-    private String name;
-    private String surname;
-    private String tel;
+    private UserType type;
     private String email;
     private String password;
-    private UserType userType;
+    private String name;
+    private String tel;
+    private Date regDate;
+    private Date lastActive;
     private Long officeID;
 
     //Constructors
     public User(){
 
     }
-    public User(String name, String surname, String tel, String email, String password, UserType userType, Long officeID) {
-        this.name = name;
-        this.surname = surname;
-        this.tel = tel;
+
+    public User(UserType type, String email, String password, String name, String tel, Date regDate, Date lastActive, Long officeID) {
+        this.type = type;
         this.email = email;
         this.password = password;
-        this.userType = userType;
+        this.name = name;
+        this.tel = tel;
+        this.regDate = new Date();
+        this.lastActive = lastActive;
         this.officeID = officeID;
     }
 
-     //Getters
+    //Getters
     @Id
     @SequenceGenerator(name = "USERID_SEQ", sequenceName = "USERID_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERID_SEQ")
     public Long getId() {
         return id;
     }
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
-    }
-    @Column(name = "SURNAME")
-    public String getSurname() {
-        return surname;
-    }
-    @Column(name = "TEL")
-    public String getTel() {
-        return tel;
+    @Column(name = "TYPE")
+    public UserType getType(){
+        return type;
     }
     @Column(name = "EMAIL")
     public String getEmail() {
@@ -58,9 +54,21 @@ public class User {
     public String getPassword() {
         return password;
     }
-    @Column(name = "USERTYPE")
-    public UserType getUserType(){
-        return userType;
+    @Column(name = "NAME")
+    public String getName() {
+        return name;
+    }
+    @Column(name = "TEL")
+    public String getTel() {
+        return tel;
+    }
+    @Column(name = "DATE_REG")
+    public Date getRegDate() {
+        return regDate;
+    }
+    @Column(name = "LAST_ACTIVE")
+    public Date getLastActive() {
+        return lastActive;
     }
     @Column(name = "OFFICEID")
     public Long getOfficeID() {
@@ -72,37 +80,28 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setType(UserType type) {
+        this.type = type;
     }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void setUserType(UserType userType){
-        this.userType = userType;
+    public void setName(String name) {
+        this.name = name;
     }
-
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
+    }
+    public void setLastActive(Date lastActive) {
+        this.lastActive = lastActive;
+    }
     public void setOfficeID(Long officeID) {
         this.officeID = officeID;
     }
-
-    public String toString() {
-        return id + "/" + name + "/" + surname + "/" + userType + "/" + officeID + "\n";
-    }
-
 }

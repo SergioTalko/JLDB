@@ -54,10 +54,10 @@ public class AppConfig {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/jl");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("1234");
+        dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+        dataSource.setUrl("jdbc:oracle:thin:@jldb.cqnnytay6z26.eu-central-1.rds.amazonaws.com:1521:ORCL");
+        dataSource.setUsername("master");
+        dataSource.setPassword("jediwannabe1981");
 
         return dataSource;
     }
