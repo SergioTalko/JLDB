@@ -14,6 +14,50 @@ public class AccountServiceImpl implements AccountService{
     private AccountDAO accountDAO;
 
     @Override
+    public void create(Object o) {
+        accountDAO.create(o);
+    }
+
+    @Override
+    public void update(Object o) {
+        accountDAO.update(o);
+    }
+
+    @Override
+    public Object read(Object o) {
+        return accountDAO.read(o);
+    }
+
+    @Override
+    public Object getById(Long id) {
+        return accountDAO.getById(id);
+    }
+
+    @Override
+    public void delete(Object o) {
+        accountDAO.delete(o);
+    }
+
+    @Override
+    public List<Object> getAll() {
+        return accountDAO.getAll();
+    }
+
+    @Override
+    public List<Account> getAccountsByOffice(Long officeID) {
+        return accountDAO.getAllByOfficeId(officeID);
+    }
+
+    @Override
+    public void updateAccountBalance(Account account, Double value) {
+        accountDAO.updateAccountBalance(account, value);
+    }
+
+
+
+
+/*
+    @Override
     public void addAccount(Account account) {
         accountDAO.addAccount(account);
     }
@@ -47,4 +91,5 @@ public class AccountServiceImpl implements AccountService{
     public void updateAccountBalance(Account account, Double value) {
         accountDAO.updateAccountBalance(account, value);
     }
+*/
 }

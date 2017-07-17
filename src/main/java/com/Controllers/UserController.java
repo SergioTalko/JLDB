@@ -1,19 +1,10 @@
 package com.Controllers;
 
-import com.Entity.User;
-import com.Entity.UserType;
-import com.Services.OfficeService;
-import com.Services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
+    /*
     @Autowired
     private UserService userService;
 
@@ -42,8 +33,9 @@ public class UserController {
         return modelAndView;
         }
     @RequestMapping("/edituser")
-    public ModelAndView edituser(/*@RequestParam Long id*/){
-            Long id = Long.parseLong("1");
+    public ModelAndView edituser(/*@RequestParam Long id*/
+ /*   }){
+           Long id = Long.parseLong("1");
         ModelAndView modelAndView = new ModelAndView("edituser.vm");
         modelAndView.addObject("user", userService.getUser(id));
         modelAndView.addObject("officeslist",officeService.getAll());
@@ -79,5 +71,5 @@ public class UserController {
             responce = new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
         }
         return responce;
-    }
+    }*/
 }

@@ -1,21 +1,12 @@
 package com.DAO;
 
-import com.Entity.Office;
-import com.Entity.User;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 @Transactional
 public class OfficeDAOImpl implements OfficeDAO{
-
+/*
     @PersistenceContext
     EntityManager entityManager;
 
@@ -71,5 +62,5 @@ public class OfficeDAOImpl implements OfficeDAO{
     public List<Office> getAllOffices() {
         Session session = getSession();
         return session.createQuery("from Office").list();
-    }
+    }*/
 }

@@ -3,7 +3,6 @@ package com.Controllers;
 import com.Entity.AccType;
 import com.Entity.Account;
 import com.Services.AccountService;
-import com.Services.OfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +17,13 @@ public class AccountsController {
     @Autowired
     AccountService accountService;
 
-    @Autowired
-    OfficeService officeService;
+    /*@Autowired
+    OfficeService officeService;*/
 
     @RequestMapping("/accounts")
     ModelAndView accounts(){
         ModelAndView modelAndView = new ModelAndView("/accounts.vm");
-        modelAndView.addObject("accountslist", accountService.getAccounts());
+        modelAndView.addObject("accountslist", accountService.getAll());
 
         return modelAndView;
     }
@@ -36,7 +35,7 @@ public class AccountsController {
 
 
         if (officeID==null)
-        modelAndView.addObject("status",accountService.getAccounts());
+        modelAndView.addObject("status",accountService.getAll());
         else
             modelAndView.addObject("status",accountService.getAccountsByOffice(officeID));
 
@@ -45,7 +44,7 @@ public class AccountsController {
     @RequestMapping("/newaccount")
     ModelAndView newaccount(){
         ModelAndView modelAndView = new ModelAndView("newaccount.vm");
-        modelAndView.addObject("officeslist",officeService.getAll());
+       /* modelAndView.addObject("officeslist",officeService.getAll());*/
         return modelAndView;
     }
     @RequestMapping("/addaccount_db")
@@ -58,7 +57,7 @@ public class AccountsController {
         Account curAccount = new Account(AccType.valueOf(acctype), name, address, accnr, swift, iban, tel, ballance, office);
         ResponseEntity<String> responce = new ResponseEntity<String>(HttpStatus.OK);
 
-        try { accountService.addAccount(curAccount);}
+        try { accountService.create(curAccount);}
         catch (Exception e){
             System.out.println("SOMETHING GOES WRONG!!!!");
             responce = new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);

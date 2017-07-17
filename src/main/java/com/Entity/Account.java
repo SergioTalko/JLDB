@@ -38,10 +38,11 @@ public class Account {
     @Id
     @SequenceGenerator(name = "ACCOUNTID_SEQ", sequenceName = "ACCOUNTID_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNTID_SEQ")
-    public Long getAccountId() {
+    @Column(name = "ID")
+    public Long getId() {
         return id;
     }
-    @Column(name = "ACCOUNTTYPE")
+    @Column(name = "ACCTYPE")
     public AccType getAccType() {
         return accType;
     }
@@ -53,7 +54,7 @@ public class Account {
     public String getAdress() {
         return adress;
     }
-    @Column(name = "ACCOUNTNR")
+    @Column(name = "ACCNR")
     public int getAccNr() {
         return accNr;
     }
@@ -80,7 +81,7 @@ public class Account {
 
     //Setters //TODO CHECK Think they are unnecessary as we manipulate data in DB, not raw objects in memory.
 
-    public void setAccountId(Long accountId) {
+    public void setId(Long accountId) {
         this.id = accountId;
     }
 

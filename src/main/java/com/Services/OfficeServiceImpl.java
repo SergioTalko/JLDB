@@ -1,7 +1,7 @@
 package com.Services;
 
 import com.DAO.OfficeDAO;
-import com.Entity.Office;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class OfficeServiceImpl implements OfficeService {
-
+/*
     @Autowired
     private OfficeDAO officeDAO;
 
@@ -41,5 +41,5 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     public List<Office> getAll() {
         return officeDAO.getAllOffices();
-    }
+    }*/
 }

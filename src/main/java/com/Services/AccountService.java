@@ -4,14 +4,14 @@ import com.Entity.Account;
 
 import java.util.List;
 
-public interface AccountService {
-
+public interface AccountService extends AbstractService{
+/*
     void addAccount(Account account);
     void updateAccount(Account account);
     void deleteAccount(Account account);
-    Account getAccountByID(Long accountID);
-    List<Account> getAccountsByOffice(Long officeID);
     List<Account> getAccounts();
+    Account getAccountByID(Long accountID);*/
+    List<Account> getAccountsByOffice(Long officeID);
     void updateAccountBalance(Account account, Double value);
 
 }
