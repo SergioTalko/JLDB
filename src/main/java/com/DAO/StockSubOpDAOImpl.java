@@ -1,7 +1,6 @@
 package com.DAO;
 
-import com.Entity.Agent;
-import com.Entity.AgentType;
+import com.Entity.StockSubOp;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,17 +9,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-
 @Repository
 @Transactional
-public class AgentDAOImpl implements AgentDAO{
+public class StockSubOpDAOImpl implements StockSubOpDAO {
+
     @PersistenceContext
     EntityManager entityManager;
-
     public Session getSession() {
         return entityManager.unwrap(Session.class);
     }
-
 
     @Override
     public Object create(Object o) {
@@ -37,8 +34,7 @@ public class AgentDAOImpl implements AgentDAO{
 
     @Override
     public Object getById(Long id) {
-        return entityManager.find(Agent.class ,id);
-
+        return entityManager.find(StockSubOp.class, id);
     }
 
     @Override
@@ -48,16 +44,7 @@ public class AgentDAOImpl implements AgentDAO{
 
     @Override
     public List<Object> getAll() {
-        return null;
-    }
-
-    @Override
-    public Agent getAgent(String name) {
-        return null;
-    }
-
-    @Override
-    public Agent getAllByType(AgentType agentType) {
-        return null;
+        Session session = getSession();
+        return session.createQuery("from StockSubOp").list();
     }
 }

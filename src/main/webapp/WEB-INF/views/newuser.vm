@@ -25,9 +25,6 @@
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Name...">
             <br/>
-            <label for="surname">Surname</label>
-            <input type="text" id="surname" name="surname" placeholder="Surname...">
-            <br/>
             <label for="tel">Telephone number</label>
             <input type="text" id="tel" name="tel" placeholder="Telephone number...">
             <br/>
@@ -64,7 +61,6 @@
             url: "/adduser_db",
             data: ({
                 name: $('#name').val(),
-                surname: $('#surname').val(),
                 tel: $('#tel').val(),
                 email: $('#email').val(),
                 password: $('#password').val(),

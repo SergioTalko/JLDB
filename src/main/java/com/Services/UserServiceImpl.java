@@ -1,6 +1,5 @@
 package com.Services;
 
-import com.DAO.OfficeDAO;
 import com.DAO.UserDAO;
 import com.Entity.User;
 import com.Entity.UserType;
@@ -16,37 +15,34 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserDAO userDAO;
 
-    @Autowired
-    private OfficeDAO officeDAO;
-
     @Override
     public User loginUser(String login, String password) {
         return userDAO.logUser(login, password);
     }
 
     @Override
-    public void addUser(User user) {
-        userDAO.addUser(user);
+    public void create(Object o) {
+        userDAO.create(o);
     }
 
     @Override
-    public void updateUser(User user) {
-        userDAO.updateUser(user);
+    public void update(Object o) {
+        userDAO.update(o);
     }
 
     @Override
-    public void deleteUser(Long userId) {
-        userDAO.removeUser(userId);
+    public Object getById(Long id) {
+        return userDAO.getById(id);
     }
 
     @Override
-    public User getUser(Long userId) {
-        return userDAO.getUser(userId);
+    public void delete(Object o) {
+        userDAO.delete(o);
     }
 
     @Override
-    public List<User> getAll() {
-        return userDAO.getAllUsers();
+    public List<Object> getAll() {
+        return userDAO.getAll();
     }
 
     public List<UserType> getPositions(){;

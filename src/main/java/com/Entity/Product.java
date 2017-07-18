@@ -56,6 +56,7 @@ public class Product {
     @Id
     @SequenceGenerator(name = "STOCKID_SEQ", sequenceName = "STOCKID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STOCKID_SEQ")
+    @Column(name = "ID")
     public Long getId() {
         return id;
     }
@@ -71,7 +72,7 @@ public class Product {
     public Long getOfficeId(){
         return officeId;
     }
-    @Column(name = "GOODSTYPE")
+    @Column(name = "PTYPE")
     public ProductType getpType(){
         return pType;
     }
@@ -79,7 +80,7 @@ public class Product {
     public String getDescr() {
         return descr;
     }
-    @Column(name = "KG")
+    @Column(name = "KGS")
     public double getKg() {
         return kg;
     }

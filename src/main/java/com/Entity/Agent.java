@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Transactional
 @Table(name = "AGENTS")
 public class Agent {
-    private long id;
+    private Long id;
     private String name;
     private String adress;
     private String tel;
@@ -32,7 +32,8 @@ public class Agent {
     @Id
     @SequenceGenerator(name = "AGENTID_SEQ", sequenceName = "AGENTID_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AGENTID_SEQ")
-    public long getAgentId() {
+    @Column(name = "ID")
+    public long getId() {
         return id;
     }
     @Column(name = "NAME")
@@ -57,7 +58,7 @@ public class Agent {
     }
 
     // Setters
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public void setName(String name) {

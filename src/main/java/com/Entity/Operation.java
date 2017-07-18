@@ -1,5 +1,8 @@
 package com.Entity;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.*;
 import java.util.Date;
 
 // General operation class. Represents a buy/sell/transform/trash operation in general.
@@ -7,9 +10,9 @@ import java.util.Date;
 // Each in reality has several sub operations.
 // Example: Buy op: Stock add products, Account money-value of goods bought. Can buy several goods ata a time.
 //TODO: NOT READY AT ALL MATTER TO DISCUS AS DESIGN AND ARCHITECTURE IS NOT READY. ANDREY.
-/*@Entity
+@Entity
 @Transactional
-@Table(name = "OPERATIONS")*/
+@Table(name = "OPERATIONS")
 public class Operation {
     private Long id;
     private String doc;
@@ -118,11 +121,12 @@ public class Operation {
         this.payday = null;
         this.totalEUR = 0.0;
     }
-/*
+
     //Getters
     @Id
     @SequenceGenerator(name = "OPERATIONID_SEQ", sequenceName = "OPERATIONID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OPERATIONID_SEQ")
+    @Column(name = "ID")
     public long getId() {
         return id;
     }
@@ -215,7 +219,7 @@ public class Operation {
     public double getTotalEUR() {
         return totalEUR;
     }
-*/
+
     //Setters
     public void setId(Long id) {
         this.id = id;

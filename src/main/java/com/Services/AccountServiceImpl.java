@@ -24,11 +24,6 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public Object read(Object o) {
-        return accountDAO.read(o);
-    }
-
-    @Override
     public Object getById(Long id) {
         return accountDAO.getById(id);
     }

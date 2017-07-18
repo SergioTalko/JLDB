@@ -2,11 +2,17 @@ package com.Services;
 
 
 import com.Entity.Product;
+import com.Entity.ProductType;
 
 import java.util.List;
 
-public interface StockService {
+public interface StockService extends AbstractService{
 
+    List<Product> getByType(ProductType type);
+    List<Product> getNotNull();
+
+    //TODO somthing here?
+    /*
     void addProduct(Product product);
 
     void updateProduct(Product product);
@@ -18,4 +24,5 @@ public interface StockService {
     Product getProduct(String batch);
 
     List<Product> getAll();
+    */
 }

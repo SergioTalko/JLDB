@@ -24,14 +24,14 @@ public class User {
 
     }
 
-    public User(UserType type, String email, String password, String name, String tel, Date regDate, Date lastActive, Long officeID) {
+    public User(UserType type, String email, String password, String name, String tel, Long officeID) {
         this.type = type;
         this.email = email;
         this.password = password;
         this.name = name;
         this.tel = tel;
         this.regDate = new Date();
-        this.lastActive = lastActive;
+        this.lastActive = null;
         this.officeID = officeID;
     }
 
@@ -39,6 +39,7 @@ public class User {
     @Id
     @SequenceGenerator(name = "USERID_SEQ", sequenceName = "USERID_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERID_SEQ")
+    @Column(name = "ID")
     public Long getId() {
         return id;
     }

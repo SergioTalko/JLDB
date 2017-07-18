@@ -1,7 +1,6 @@
 package com.Services;
 
 import com.DAO.OperationDAO;
-import com.Entity.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +12,32 @@ public class OperationsServiceImpl implements OperationsService {
     @Autowired
     OperationDAO operationDAO;
 
+    @Override
+    public void create(Object o) {
+        operationDAO.create(o);
+    }
+
+    @Override
+    public void update(Object o) {
+        operationDAO.update(o);
+    }
+
+    @Override
+    public Object getById(Long id) {
+        return operationDAO.getById(id);
+    }
+
+    @Override
+    public void delete(Object o) {
+        operationDAO.delete(o);
+    }
+
+    @Override
+    public List<Object> getAll() {
+        return operationDAO.getAll();
+    }
+
+    /*
     @Override
     public void addOperation(Operation operation) {
         operationDAO.addOperation(operation);
@@ -37,4 +62,5 @@ public class OperationsServiceImpl implements OperationsService {
     public List<Operation> getAll() {
         return operationDAO.getAll();
     }
+    */
 }

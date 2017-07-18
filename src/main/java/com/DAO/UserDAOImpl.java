@@ -1,5 +1,7 @@
 package com.DAO;
 
+import com.Entity.Agent;
+import com.Entity.AgentType;
 import com.Entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -17,16 +19,69 @@ public class UserDAOImpl implements UserDAO {
 
     @PersistenceContext
     EntityManager entityManager;
-
     public Session getSession() {
         return entityManager.unwrap(Session.class);
     }
 
     @Override
-    public void addUser(User user) {
-        entityManager.persist(user);
+    public Object create(Object o) {
+        entityManager.persist(o);
+        return o;
     }
 
+    @Override
+    public Object update(Object o) {
+        Session session = getSession();
+        session.update(o);
+        return o;
+    }
+
+    @Override
+    public Object getById(Long id) {
+        return entityManager.find(User.class, id);
+    }
+
+    @Override
+    public void delete(Object o) {
+        entityManager.remove(o);
+    }
+
+    @Override
+    public List<Object> getAll() {
+        Session session = getSession();
+        return session.createQuery("from User").list();
+    }
+
+    @Override
+    public User logUser(String email, String password) {
+        User user;
+        try {
+            user = entityManager.find(User.class, email);
+        }
+        catch (Exception e){
+            return null;
+        }
+
+        if (user.getPassword().equals(password))
+            return user;
+        return null;
+/*
+        Session session = getSession();
+        Query query = session.createQuery("from User where email = :emailCode AND password = :passCode");
+
+        query.setParameter("emailCode", email);
+        query.setParameter("passCode", password);
+
+        List<User> users = query.list();
+
+        if (users.size() == 0)
+            return null;
+        return users.get(0);*/
+    }
+
+
+
+/*
     @Override
     public void removeUser(Long userId) {
         Session session = getSession();
@@ -35,11 +90,6 @@ public class UserDAOImpl implements UserDAO {
             session.delete(user);
         }
         //entityManager.remove(user);
-    }
-
-    public void updateUser(User user){
-        Session session = getSession();
-        session.update(user);
     }
 
     @Override
@@ -54,26 +104,5 @@ public class UserDAOImpl implements UserDAO {
             return null;
         return users.get(0);
     }
-
-    @Override
-    public User logUser(String email, String password) {
-        Session session = getSession();
-        Query query = session.createQuery("from User where email = :emailCode AND password = :passCode");
-
-        query.setParameter("emailCode", email);
-        query.setParameter("passCode", password);
-
-        List<User> users = query.list();
-
-        if (users.size() == 0)
-            return null;
-        return users.get(0);
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        Session session = getSession();
-        return session.createQuery("from User").list();
-    }
-
+*/
 }

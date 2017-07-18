@@ -5,12 +5,7 @@ import com.Entity.Product;
 
 import java.util.List;
 
-public interface ProductDAO {
-    Product addProduct(Product product);
-    Product getProduct(Long id);
-    Product getProduct(String batch);
-    Product updateProduct(Product product);
+public interface ProductDAO extends AbstractDAO{
     List<Product> getByType(ProductType type);
     List<Product> getNotNull();
-    Product deleteProduct(Product product);
 }

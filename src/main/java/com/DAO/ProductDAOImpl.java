@@ -17,49 +17,64 @@ public class ProductDAOImpl implements ProductDAO{
 
     @PersistenceContext
     EntityManager entityManager;
-
     public Session getSession() {
         return entityManager.unwrap(Session.class);
     }
 
     @Override
-    public Product addProduct(Product product) {
-        entityManager.persist(product);
-        return product;
+    public Object create(Object o) {
+        entityManager.persist(o);
+        return o;
     }
 
     @Override
-    public Product getProduct(Long id) {
+    public Object update(Object o) {
         Session session = getSession();
-        Query query = session.createQuery("from Product where id = :id");
-        query.setParameter("id", id);
+        session.update(o);
+        return o;
+    }
+
+    @Override
+    public List<Product> getByType(ProductType type) {
+        Session session = getSession();
+        Query query = session.createQuery("from Product where pType = :goodsType");
+        query.setParameter("goodsType", type);
         //TODO: Check if works
         List<Product> list = query.list();
 
         if (list.size() == 0)
             return null;
-        return list.get(0);
+        return list;
     }
 
     @Override
-    public Product getProduct(String batch) {
+    public Object getById(Long id) {
+        return entityManager.find(Product.class, id);
+    }
+
+    @Override
+    public void delete(Object o) {
+        entityManager.remove(o);
+    }
+
+    @Override
+    public List<Product> getNotNull() {
         Session session = getSession();
-        Query query = session.createQuery("from Product where batch = :batch");
-        query.setParameter("batch", batch);
+        List<Product> list = session.createQuery("from Product").list();
+        for (Product product: list) {
+            if (product.getKg()<=0)list.remove(product);
+        }
         //TODO: Check if works
-        List<Product> list = query.list();
-
-        if (list.size() == 0)
-            return null;
-        return list.get(0);
+        return list;
     }
 
-    public Product updateProduct(Product product){
+    @Override
+    public List<Object> getAll() {
         Session session = getSession();
-        session.update(product);
-        return product;
+        return session.createQuery("from Product").list();
     }
 
+    /*
     @Override
     public List<Product> getByType(ProductType type) {
         Session session = getSession();
@@ -79,7 +94,7 @@ public class ProductDAOImpl implements ProductDAO{
         List<Product> list = session.createQuery("from Product").list();
         /*for (Product product: list) {
             if (product.getKg()<=0)list.remove(product);
-        }*/
+        }
         //TODO: Check if works
         return list;
     }
@@ -89,5 +104,5 @@ public class ProductDAOImpl implements ProductDAO{
         entityManager.remove(product);
 
         return product;
-    }
+    }*/
 }

@@ -30,17 +30,16 @@
 </div>
 <main>
     <div class="content">
-
         <table>
             <tr>
                 <th>id</th>
                 <th>name</th>
-                <th>surname</th>
                 <th>tel</th>
                 <th>email</th>
                 <th>password</th>
                 <th>userType</th>
                 <th>office</th>
+                <th>last active</th>
 
                 <th>Edit</th>
                 <th>Delete</th>
@@ -49,12 +48,12 @@
             <tr>
                 <td>$user.id</td>
                 <td>$user.name</td>
-                <td>$user.surname</td>
                 <td>$user.tel</td>
                 <td>$user.email</td>
                 <td>$user.password</td>
-                <td>$user.userType</td>
+                <td>$user.type</td>
                 <td>$user.officeID</td>
+                <td>$user.lastActive</td>
 
                 <td><button class="edit" onclick="edituser_db($user.id)">Edit</button></td>
                 <td><button class="delete" value="$user.id" onclick="removeuser($user.id)">Delete</button></td>

@@ -40,6 +40,7 @@ public class StockSubOp {
     @Id
     @SequenceGenerator(name = "STOCKSUBOPID_SEQ", sequenceName = "STOCKSUBOPID_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STOCKSUBOPID_SEQ")
+    @Column(name = "ID")
     public Long getId() {
         return id;
     }

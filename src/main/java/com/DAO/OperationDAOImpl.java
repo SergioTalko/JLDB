@@ -16,45 +16,35 @@ import java.util.List;
 public class OperationDAOImpl implements OperationDAO{
     @PersistenceContext
     EntityManager entityManager;
-
     public Session getSession() {
         return entityManager.unwrap(Session.class);
     }
 
     @Override
-    public Operation addOperation(Operation operation) {
-        entityManager.persist(operation);
-        return operation;
+    public Object create(Object o) {
+        entityManager.persist(o);
+        return o;
     }
 
     @Override
-    public Operation getOperation(long id) {
+    public Object update(Object o) {
         Session session = getSession();
-        Query query = session.createQuery("from Operation where id = :id");
-        query.setParameter("id", id);
-        //TODO: Check if works
-        List<Operation> list = query.list();
-
-        if (list.size() == 0)
-            return null;
-        return list.get(0);
+        session.update(o);
+        return o;
     }
 
     @Override
-    public List<Operation> getAll() {
+    public Object getById(Long id) {
+        return entityManager.find(Operation.class, id);
+    }
+
+    @Override
+    public void delete(Object o) {
+        entityManager.remove(o);
+    }
+
+    @Override
+    public List<Object> getAll() {
         return getSession().createQuery("from Operation").list();
-    }
-
-    @Override
-    public Operation updateOperation(Operation operation) {
-        Session session = getSession();
-        session.update(operation);
-        return operation;
-    }
-
-    @Override
-    public Operation deleteOperation(Operation operation) {
-        entityManager.remove(operation);
-        return operation;
     }
 }

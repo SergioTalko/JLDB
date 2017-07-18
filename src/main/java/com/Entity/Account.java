@@ -81,8 +81,8 @@ public class Account {
 
     //Setters //TODO CHECK Think they are unnecessary as we manipulate data in DB, not raw objects in memory.
 
-    public void setId(Long accountId) {
-        this.id = accountId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setAccType(AccType accType) {
