@@ -44,7 +44,7 @@ public class AgentServiceImpl implements AgentService{
     }
 
     @Override
-    public Agent getAllByType(AgentType agentType) {
+    public List <Agent> getAllByType(AgentType agentType) {
         return agentDAO.getAllByType(agentType);
     }
 }
