@@ -127,7 +127,7 @@ public class Operation {
     @SequenceGenerator(name = "OPERATIONID_SEQ", sequenceName = "OPERATIONID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OPERATIONID_SEQ")
     @Column(name = "ID")
-    public long getId() {
+    public Long getId() {
         return id;
     }
     @Column(name = "DOC")

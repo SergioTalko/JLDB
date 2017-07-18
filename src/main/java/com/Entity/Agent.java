@@ -32,8 +32,8 @@ public class Agent {
     @Id
     @SequenceGenerator(name = "AGENTID_SEQ", sequenceName = "AGENTID_SEQ",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AGENTID_SEQ")
-    @Column(name = "ID")
-    public long getId() {
+    //@Column(name = "ID")
+    public Long getId() {
         return id;
     }
     @Column(name = "NAME")
