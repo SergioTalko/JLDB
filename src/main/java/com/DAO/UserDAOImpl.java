@@ -54,18 +54,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User logUser(String email, String password) {
-        User user;
-        try {
-            user = entityManager.find(User.class, email);
-        }
-        catch (Exception e){
-            return null;
-        }
-
-        if (user.getPassword().equals(password))
-            return user;
-        return null;
-/*
         Session session = getSession();
         Query query = session.createQuery("from User where email = :emailCode AND password = :passCode");
 
@@ -76,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 
         if (users.size() == 0)
             return null;
-        return users.get(0);*/
+        return users.get(0);
     }
 
 

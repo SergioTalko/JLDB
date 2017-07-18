@@ -2,6 +2,7 @@ package com.DAO;
 
 import com.Entity.Agent;
 import com.Entity.AgentType;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,7 +58,15 @@ public class AgentDAOImpl implements AgentDAO{
     }
 
     @Override
-    public Agent getAllByType(AgentType agentType) {
-        return null;
+    public List<Agent> getAllByType(AgentType agentType) {
+        Session session = getSession();
+        Query query = session.createQuery("from Agent where type = :agentType");
+        query.setParameter("agentType", AgentType.OFFICE);
+        //TODO: Check if works
+        List<Agent> list = query.list();
+
+        if (list.size() == 0)
+            return null;
+        return list;
     }
 }
